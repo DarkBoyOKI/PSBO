@@ -45,12 +45,10 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
-
-        'admins' => [
+        'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-
         'admin-api' => [
             'driver' => 'token',
             'provider' => 'admins',
@@ -117,5 +115,4 @@ return [
             'expire' => 15,
         ],
     ],
-
 ];
