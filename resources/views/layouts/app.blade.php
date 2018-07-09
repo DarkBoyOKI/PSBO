@@ -53,7 +53,6 @@
 
                         <li><a href="{{ route('jadwals.index') }}"><i class="fa fa-building" aria-hidden="true"></i> Mata Kuliah</a></li>
                             <li><a href="{{ route('projects.index') }}"><i class="fa fa-briefcase" aria-hidden="true"></i> Projects</a></li>
-                            <li><a href="{{ route('tasks.index') }}"><i class="fa fa-tasks" aria-hidden="true"></i> Tasks</a></li>
 @if(Auth::user()->role_id == 1)
 
 
@@ -66,7 +65,6 @@
                                 <ul class="dropdown-menu" role="menu">
 <li><a href="{{ route('projects.index') }}"><i class="fa fa-briefcase" aria-hidden="true"></i> All Projects</a></li>
 <li><a href="{{ route('users.index') }}"><i class="fa fa-user" aria-hidden="true"></i> All Users</a></li>
-<li><a href="{{ route('tasks.index') }}"><i class="fa fa-tasks" aria-hidden="true"></i> All Tasks</a></li>
 <li><a href="{{ route('jadwals.index') }}"><i class="fa fa-building" aria-hidden="true"></i> Semua Jadwal</a></li>
 <li><a href="{{ route('roles.index') }}"><i class="fa fa-envelope" aria-hidden="true"></i> All Roles</a></li>
 
