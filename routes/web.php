@@ -17,18 +17,20 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
-Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout');
+Route::get('/home', 'HomeController@index')->name('home');
 
-Route::prefix('admin')->group(function() {
-  Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
-  Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
-  Route::get('/', 'AdminController@index')->name('admin.dashboard');
-  Route::get('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
+    // Authentication Routes...
+Route::get('admin/home', 'AdminController@index');
+    $this->get('admin', 'Admin\LoginController@showLoginForm')->name('admin.login');
+    $this->post('admin', 'Admin\LoginController@login');
+    $this->post('logout', 'Admin\LoginController@logout')->name('logout');
 
-  // Password reset routes
-  Route::post('/password/email', 'Auth\AdminForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
-  Route::get('/password/reset', 'Auth\AdminForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
-  Route::post('/password/reset', 'Auth\AdminResetPasswordController@reset');
-  Route::get('/password/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
-});
+    // Registration Routes...
+    //$this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+    //$this->post('register', 'Auth\RegisterController@register');
+
+    // Password Reset Routes...
+    $this->get('admin-password/reset', 'Admin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
+    $this->post('admin-password/email', 'Admin\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
+    $this->get('admin-password/reset/{token}', 'Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
+    $this->post('admin-password/reset', 'Admin\ResetPasswordController@reset');

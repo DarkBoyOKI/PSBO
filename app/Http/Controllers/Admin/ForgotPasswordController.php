@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
-use Password;
-
-class AdminForgotPasswordController extends Controller
+use App\notifications\AdminResetPasswordNotification;
+class ForgotPasswordController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -30,14 +29,28 @@ class AdminForgotPasswordController extends Controller
     {
         $this->middleware('guest:admin');
     }
-
-    protected function broker()
-    {
-      return Password::broker('admins');
-    }
-
+    /**
+     * Display the form to request a password reset link.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function showLinkRequestForm()
     {
-        return view('auth.passwords.email-admin');
+        return view('admin.passwords.email');
+    }
+    public function showResetForm(Request $request, $token = null)
+    {
+        return view('admin.passwords.reset')->with(
+            ['token' => $token, 'email' => $request->email]
+        );
+    }
+    /**
+     * Get the broker to be used during password reset.
+     *
+     * @return \Illuminate\Contracts\Auth\PasswordBroker
+     */
+    public function broker()
+    {
+        return Password::broker('admin');
     }
 }
