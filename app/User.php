@@ -43,13 +43,6 @@ class User extends Authenticatable
     public function jadwals(){
 		return $this->hasMany('App\Jadwal');
     }
-    
-
-    public function tasks()
-    {
-        return $this->belongsToMany('App\Task');
-    }
-
 
     //many to many relationship
     public function matkuls()
