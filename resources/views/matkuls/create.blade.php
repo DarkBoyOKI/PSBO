@@ -4,34 +4,56 @@
 
 
 
-     
-     <div class="row col-md-9 col-lg-9 col-sm-9 pull-left " style="background: white;">
+     <div class="row col-md-9 col-lg-9 col-sm-9 pull-left " style="background: white; ">
     <h1> </h1>
 
       <!-- Example row of columns -->
       <div class="row  col-md-12 col-lg-12 col-sm-12" >
 
-      <form method="post" action="{{ route('jadwals.store') }}">
+      <form method="post" action="{{ route('matkuls.store') }}">
                             {{ csrf_field() }}
 
 
                             <div class="form-group">
-                                <label for="jadwal-name">Nama Mata Kuliah<span class="required">*</span></label>
+                                <label for="matkul-name">Nama Jadwal<span class="required">*</span></label>
                                 <input   placeholder="Enter name"  
-                                          id="jadwal-name"
+                                          id="matkul-name"
                                           required
                                           name="name"
                                           spellcheck="false"
                                           class="form-control"
                                            />
-                            </div>
+                                  </div>
 
+                                  @if($jadwals == null)
+                                  <input   
+                                  class="form-control"
+                                  type="hidden"
+                                          name="jadwal_id"
+                                          value="{{ $jadwal_id }}"
+                                           />
+                                  </div>
+
+                                  @endif
+
+                            @if($jadwals != null)
+                            <div class="form-group">
+                                <label for="jadwal-content">Pilih Jadwal</label>
+
+                                <select name="jadwal_id" class="form-control" > 
+
+                                @foreach($jadwals as $jadwal)
+                                        <option value="{{$jadwal->id}}"> {{$jadwal->name}} </option>
+                                      @endforeach
+                                </select>
+                            </div>
+                            @endif
 
                             <div class="form-group">
-                                <label for="jadwal-content">Deskripsi Mata Kuliah</label>
+                                <label for="matkul-content">Deskripsi</label>
                                 <textarea placeholder="Enter description" 
                                           style="resize: vertical" 
-                                          id="jadwal-content"
+                                          id="matkul-content"
                                           name="description"
                                           rows="5" spellcheck="false"
                                           class="form-control autosize-target text-left">
@@ -58,7 +80,7 @@
           <div class="sidebar-module">
             <h4>Actions</h4>
             <ol class="list-unstyled">
-              <li><a href="/jadwals"> <i class="fa fa-building-o" aria-hidden="true"></i> Jadwal Saya</a></li>
+              <li><a href="/matkuls"><i class="fa fa-user-o" aria-hidden="true"></i> Jadwal Saya</a></li>
               
             </ol>
           </div>

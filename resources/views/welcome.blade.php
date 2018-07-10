@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Dosen.io
+                    Pmanager
                 </div>
 
                 <div class="links">

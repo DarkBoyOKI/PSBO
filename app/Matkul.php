@@ -4,28 +4,32 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Jadwal extends Model
+class Matkul extends Model
 {
     //
-
     protected $fillable = [
-        'id',
         'name',
         'description',
-        'user_id'
+        'jadwal_id',
+        'user_id',
+        'days',
 
     ];
 
-    public function user(){
-		return $this->belongsTo('App\User');
+
+    public function users(){
+		return $this->belongsToMany('App\User');
     }
 
-    public function matkuls(){
-        return $this->hasMany('App\Matkul');
+    
+
+    public function jadwal(){
+		return $this->belongsTo('App\Jadwal');
     }
 
     public function comments()
     {
         return $this->morphMany('App\Comment', 'commentable');
     }
+
 }
