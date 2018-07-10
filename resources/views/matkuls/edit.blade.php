@@ -4,40 +4,39 @@
 
 
 
-     
-     <div class="row col-md-9 col-lg-9 col-sm-9 pull-left " style="background: white;">
-    <h1> </h1>
+<div class="row col-md-9 col-lg-9 col-sm-9 pull-left " style="background: white;">
+<h1>Update Jadwal </h1>
 
       <!-- Example row of columns -->
       <div class="row  col-md-12 col-lg-12 col-sm-12" >
 
-      <form method="post" action="{{ route('jadwals.store') }}">
+      <form method="post" action="{{ route('jadwals.update',[$jadwal->id]) }}">
                             {{ csrf_field() }}
 
+                            <input type="hidden" name="_method" value="put">
 
                             <div class="form-group">
-                                <label for="jadwal-name">Nama Mata Kuliah<span class="required">*</span></label>
+                                <label for="jadwal-name">Name<span class="required">*</span></label>
                                 <input   placeholder="Enter name"  
                                           id="jadwal-name"
                                           required
                                           name="name"
                                           spellcheck="false"
                                           class="form-control"
+                                          value="{{ $jadwal->name }}"
                                            />
                             </div>
 
 
                             <div class="form-group">
-                                <label for="jadwal-content">Deskripsi Mata Kuliah</label>
+                                <label for="jadwal-content">Description</label>
                                 <textarea placeholder="Enter description" 
                                           style="resize: vertical" 
                                           id="jadwal-content"
                                           name="description"
                                           rows="5" spellcheck="false"
                                           class="form-control autosize-target text-left">
-
-                                          
-                                          </textarea>
+                                          {{ $jadwal->description }}</textarea>
                             </div>
                             <div class="form-group">
                                 <input type="submit" class="btn btn-primary"
@@ -58,7 +57,8 @@
           <div class="sidebar-module">
             <h4>Actions</h4>
             <ol class="list-unstyled">
-              <li><a href="/jadwals"> <i class="fa fa-building-o" aria-hidden="true"></i> Jadwal Saya</a></li>
+              <li><a href="/jadwals/{{ $jadwal->id }}"><i class="fa fa-building-o" aria-hidden="true"></i> Lihat Jadwal</a></li>
+              <li><a href="/jadwals"><i class="fa fa-building" aria-hidden="true"></i> Semua Jadwal</a></li>
               
             </ol>
           </div>

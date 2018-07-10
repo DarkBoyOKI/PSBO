@@ -43,11 +43,11 @@ class User extends Authenticatable
     public function jadwals(){
 		return $this->hasMany('App\Jadwal');
     }
-    
+
     //many to many relationship
-    public function projects()
+    public function matkuls()
     {
-        return $this->belongsToMany('App\Project');
+        return $this->belongsToMany('App\Matkul');
     }
 
     public function comments()

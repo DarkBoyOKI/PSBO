@@ -16,14 +16,7 @@
 
       <!-- Example row of columns -->
       <div class="row  col-md-12 col-lg-12 col-sm-12" style="background: white; margin: 10px; ">
-      <a href="/projects/create/{{ $jadwal->id }}" class="pull-right btn btn-default btn-sm" >Add Project</a>
-      @foreach($jadwal->projects as $project)
-        <div class="col-lg-4 col-md-4 col-sm-4">
-          <h2>{{ $project->name }}</h2>
-          <p class="text-danger"> {{$project->description}} </p>
-          <p><a class="btn btn-primary" href="/projects/{{ $project->id }}" role="button"> View Project »</a></p>
-        </div>
-      @endforeach
+      <a href="/matkuls/create/{{ $jadwal->id }}" class="pull-right btn btn-default btn-sm" >Tambahkan ke Jadwal</a>
       </div>
 </div>
 
@@ -37,7 +30,7 @@
             <h4>Actions</h4>
             <ol class="list-unstyled">
               <li><a href="/jadwals/{{ $jadwal->id }}/edit">Edit</a></li>
-              <li><a href="/projects/create/{{ $jadwal->id }}">Add Project</a></li>
+              <li><a href="/matkuls/create/{{ $jadwal->id }}">Tambah Jaadwale</a></li>
               <li><a href="/jadwals">Jadwal Saya</a></li>
               <li><a href="/jadwal/create">Create new Jadwal</a></li>
             

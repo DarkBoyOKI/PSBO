@@ -36,13 +36,18 @@ Route::get('admin/home', 'AdminController@index');
     $this->post('admin-password/reset', 'Admin\ResetPasswordController@reset');
 
 
-Route::middleware(['auth'])->group(function (){
+Route::middleware(['auth'])->group(function () {
+
     Route::resource('jadwals', 'JadwalsController');
-    Route::get('projects/create/{jadwal_id?}', 'ProjectsController@create');
-    Route::post('/projects/adduser', 'ProjectsController@adduser')->name('projects.adduser');
-    Route::resource('projects', 'ProjectsController');
-        
+
+    Route::get('matkuls/create/{jadwal_id?}', 'MatkulsController@create');
+    Route::post('/matkuls/adduser', 'MatkulsController@adduser')->name('matkuls.adduser');
+    Route::resource('matkuls', 'MatkulsController');
+    
     Route::resource('roles', 'RolesController');
     Route::resource('users', 'UsersController');
     Route::resource('comments', 'CommentsController');
+
+    
 });
+
