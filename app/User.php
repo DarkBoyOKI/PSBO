@@ -15,14 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 
-        'email', 
-        'password',
-        'first_name',
-        'middle_name',
-        'last_name',
-        'city',
-        'role_id'
+        'name', 'nomor_induk', 'semester', 'role', 'email', 'password', 'approve'
     ];
 
     /**
@@ -33,26 +26,4 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-  
-    
-    public function role(){
-		return $this->belongsTo('App\Role');
-    }
-
-    public function jadwals(){
-		return $this->hasMany('App\Jadwal');
-    }
-
-    //many to many relationship
-    public function matkuls()
-    {
-        return $this->belongsToMany('App\Matkul');
-    }
-
-    public function comments()
-    {
-        return $this->morphMany('App\Comment', 'commentable');
-    }
-
 }

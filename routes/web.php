@@ -11,43 +11,91 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function () {return view('templates/login');});
+Route::get('/home', function () {
+    if(!Auth::user())
+        return redirect('templates/login');
+    $user=Auth::user();
+    if($user->role!='mahasiswa')
+        return redirect('jadwalMHS');
+    return view('templates/index');
 });
+
+Route::get('/buatJadwal/{id_matkul}/{semester}', 'JadwalController@buatJadwal')->name('makeJadwal');
+Route::get('/hapusJadwal/{id_jadwal}', 'JadwalController@hapusJadwal')->name('hapusJadwal');
+
+Route::get('/login', function () {
+    return view('templates/login');
+});
+
+Route::get('/register', function () {
+    return view('templates/register');
+});
+
+Route::get('/matkul', function () {
+    return view('templates/matkul');
+});
+
+
+Route::get('/buatJadwal', function () {
+    if(!Auth::user())
+        return redirect('templates/login');
+    $user=Auth::user();
+    if($user->role!='mahasiswa')
+        return redirect('/home');
+    return view('templates/buatJadwal');
+});
+
+Route::get('/buatMatkul', function () {
+    if(!Auth::user())
+        return redirect('templates/login');
+    $user=Auth::user();
+    if($user->role!='dosen')
+        return redirect('/home');
+    return view('templates/buatMatkul');
+});
+
+Route::get('/jadwalMHS', function () {
+    if(!Auth::user())
+        return redirect('templates/login');
+    $user=Auth::user();
+    if($user->role!='dosen')
+        return redirect('home');
+    return view('templates/jadwalMHS');
+});
+
+Route::get('/jadwalMHS/{id_mhs}', function ($id_mhs) {
+    if(!Auth::user())
+        return redirect('templates/login');
+    $user=Auth::user();
+    if($user->role!='dosen')
+        return redirect('home');
+    return view('templates/jadwalMHSdetail',compact('id_mhs'));
+});
+
+Route::post('/buatMatkul', 'MatkulController@buatMatkul')->name('buatMatkul');
+
+
+Route::post('/approveJadwal', 'ApproveController@approveJadwal')->name('approveJadwal');
+Route::get('/approveJadwal/{id_mhs}', function () {
+    if(!Auth::user())
+        return redirect('templates/login');
+    $user=Auth::user();
+    if($user->role!='dosen')
+        return redirect('home');
+    return view('templates/jadwalMHSdetail',compact('id_mhs'));
+});
+
+Route::post('/disapproveJadwal', 'ApproveController@disapproveJadwal')->name('disapproveJadwal');
+Route::get('/disapproveJadwal/{id_mhs}', function () {
+    if(!Auth::user())
+        return redirect('templates/login');
+    $user=Auth::user();
+    if($user->role!='dosen')
+        return redirect('home');
+    return view('templates/jadwalMHSdetail',compact('id_mhs'));
+});
+
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-    // Authentication Routes...
-Route::get('admin/home', 'AdminController@index');
-    $this->get('admin', 'Admin\LoginController@showLoginForm')->name('admin.login');
-    $this->post('admin', 'Admin\LoginController@login');
-    $this->post('logout', 'Admin\LoginController@logout')->name('logout');
-
-    // Registration Routes...
-    //$this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-    //$this->post('register', 'Auth\RegisterController@register');
-
-    // Password Reset Routes...
-    $this->get('admin-password/reset', 'Admin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
-    $this->post('admin-password/email', 'Admin\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
-    $this->get('admin-password/reset/{token}', 'Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
-    $this->post('admin-password/reset', 'Admin\ResetPasswordController@reset');
-
-
-Route::middleware(['auth'])->group(function () {
-
-    Route::resource('jadwals', 'JadwalsController');
-
-    Route::get('matkuls/create/{jadwal_id?}', 'MatkulsController@create');
-    Route::post('/matkuls/adduser', 'MatkulsController@adduser')->name('matkuls.adduser');
-    Route::resource('matkuls', 'MatkulsController');
-    
-    Route::resource('roles', 'RolesController');
-    Route::resource('users', 'UsersController');
-    Route::resource('comments', 'CommentsController');
-
-    
-});
 
