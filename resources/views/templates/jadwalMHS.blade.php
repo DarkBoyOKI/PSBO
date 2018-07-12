@@ -31,7 +31,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Tabel Mahasiswa
+        Jadwal Mahasiswa
       </h1>
     </section>
 
@@ -41,9 +41,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                  <li class="active"><a href="#semester_1" data-toggle="tab">Semester 1</a></li>
-                  <li><a href="#semester_2" data-toggle="tab">Semester 2</a></li>
-                  <li><a href="#semester_3" data-toggle="tab">Semester 3</a></li>
+                  <li class="active"><a href="#semester_1" data-toggle="tab">Tabel Seluruh Jadwal Mahasiswa</a></li>
                   <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
                 </ul>
                 <div class="tab-content">
@@ -53,6 +51,8 @@
                           <tr>
                               <th>Nomor</th>
                               <th>Nama Mahasiswa</th>
+                              <th>Nomor Induk</th>
+                              <th>Id</th>
                               <th>Semester</th>
                               <th>Detail</th>
                           </tr>
@@ -66,11 +66,21 @@
                               <tr>
                                   <td>{{$i++}}</td>
                                   <td>{{$mahasiswa->name}}</td>
+                                  <td>{{$mahasiswa->nomor_induk}}</td>
+                                  <td>{{$mahasiswa->id}}</td>
                                   <td>{{$mahasiswa->semester}}</td>
                                   <td>
                                     <div class="box-footer">
                                         <a href="/jadwalMHS/{{$mahasiswa->id}}"><button type="submit" class="btn btn-primary">Lihat Detail</button></a>
-                                    </div>
+                                    <br>
+                                    <br>
+                                    <form action="{{route('approveJadwal', $mahasiswa->id)}}" method="post">{{csrf_field()}}
+                                      <button type="submit" class="btn btn-success">Approve Jadwal</button>
+                                    </form>
+                                    <br><form action="{{route('disapproveJadwal', $mahasiswa->id)}}" method="post">{{csrf_field()}}
+                                      <button type="submit" class="btn btn-danger">Tolak Jadwal</button>
+                                    </form>
+                                  </div>
                                   </td>
                                 </tr>
                               @endforeach
@@ -79,73 +89,12 @@
                           <tr>
                             <th>Nomor</th>
                             <th>Nama Mahasiswa</th>
+                            <th>Nomor Induk</th>
+                            <th>Id</th>
                             <th>Semester</th>
                           </tr>
                           </tfoot>
                         </table>
-                  </div>
-                  <!-- /.tab-pane -->
-                  <div class="tab-pane" id="semester_2">
-                      <table id="tabel_semester_2" class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th>Nomor</th>
-                            <th>Nama Mahasiswa</th>
-                            <th>Semester</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            @php
-                              $mahasiswas = App\User::where('role','=','mahasiswa')->get();
-                              $i=1;
-                            @endphp
-                            @foreach ($mahasiswas as $mahasiswa)
-                            <tr>
-                                <td>{{$i++}}</td>
-                                <td>{{$mahasiswa->name}}</td>
-                                <td>{{$mahasiswa->semester}}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                          <tfoot>
-                        <tr>
-                          <th>Nomor</th>
-                          <th>Nama Mahasiswa</th>
-                          <th>Semester</th>
-                        </tr>
-                        </tfoot>
-                      </table>
-                   
-                  </div>
-                  <!-- /.tab-pane -->
-                  <div class="tab-pane" id="semester_3">
-                      <table id="tabel_semester_3" class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th>Nomor</th>
-                            <th>Kode Mata Kuliah</th>
-                            <th>Nama Mata Kuliah</th>
-                            <th>SKS</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                          </tr>
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                          <th>Nomor</th>
-                          <th>Kode Mata Kuliah</th>
-                          <th>Nama Mata Kuliah</th>
-                          <th>SKS</th>
-                        </tr>
-                        </tfoot>
-                      </table>
-                    
                   </div>
                   <!-- /.tab-pane -->
                 </div>

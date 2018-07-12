@@ -27,7 +27,7 @@
             <strong>{{ $errors->first('nomor_induk') }}</strong>
           </span>
           @endif
-          <span class="glyphicon glyphicon-user form-control-feedback"></span>
+          <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
           <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}"placeholder="Alamat email" required autofocus>
@@ -69,7 +69,7 @@
 
     <div class="social-auth-links text-center">
         <p><br></br></p>
-        <a href="{{ route('login') }}"" class="btn btn-primary btn-block btn-flat">Sudah punya akun?</a>
+        <a href="{{ route('login') }}" class="btn btn-primary btn-block btn-flat">Sudah punya akun?</a>
     </div>
   </div>
   <!-- /.form-box -->

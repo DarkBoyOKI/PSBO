@@ -19,7 +19,7 @@
               <!-- Menu Body -->
               <li class="user-body">
                   <div class="pull-center">
-                      <a class="btn btn-default btn-flat" href="{{ route('logout') }}"
+                      <a class="btn btn-default btn-flat glyphicon glyphicon-log-out" href="{{ route('logout') }}"
                       onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
                         {{ __('Keluar') }}

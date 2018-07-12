@@ -44,9 +44,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                  <li class="active"><a href="#semester_1" data-toggle="tab">Semester 1</a></li>
-                  <li><a href="#semester_2" data-toggle="tab">Semester 2</a></li>
-                  <li><a href="#semester_3" data-toggle="tab">Semester 3</a></li>
+                  <li class="active"><a href="#semester_1" data-toggle="tab">Jadwal Mata Kuliah yang Akan Diambil</a></li>
                   <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
                 </ul>
                 <div class="tab-content">

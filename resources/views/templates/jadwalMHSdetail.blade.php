@@ -41,9 +41,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                  <li class="active"><a href="#semester_1" data-toggle="tab">Semester 1</a></li>
-                  <li><a href="#semester_2" data-toggle="tab">Semester 2</a></li>
-                  <li><a href="#semester_3" data-toggle="tab">Semester 3</a></li>
+                  <li class="active"><a href="#semester_1" data-toggle="tab">Detail Jadwal Mahasiswa</a></li>
                   <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
                 </ul>
                 <div class="tab-content">
@@ -82,70 +80,6 @@
                         </table>
                   </div>
                   <!-- /.tab-pane -->
-                  <div class="tab-pane" id="semester_2">
-                      <table id="tabel_semester_2" class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th>Nomor</th>
-                            <th>Kode Mata Kuliah</th>
-                            <th>Nama Mata Kuliah</th>
-                            <th>SKS</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            @php
-                              $mahasiswas = App\User::where('role','=','mahasiswa')->get();
-                              $i=1;
-                            @endphp
-                            @foreach ($mahasiswas as $mahasiswa)
-                            <tr>
-                                <td>{{$i++}}</td>
-                                <td>{{$mahasiswa->name}}</td>
-                                <td>{{$mahasiswa->semester}}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                          <tfoot>
-                        <tr>
-                            <th>Nomor</th>
-                            <th>Kode Mata Kuliah</th>
-                            <th>Nama Mata Kuliah</th>
-                            <th>SKS</th>
-                        </tr>
-                        </tfoot>
-                      </table>
-                   
-                  </div>
-                  <!-- /.tab-pane -->
-                  <div class="tab-pane" id="semester_3">
-                      <table id="tabel_semester_3" class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th>Nomor</th>
-                            <th>Kode Mata Kuliah</th>
-                            <th>Nama Mata Kuliah</th>
-                            <th>SKS</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                          </tr>
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                          <th>Nomor</th>
-                          <th>Kode Mata Kuliah</th>
-                          <th>Nama Mata Kuliah</th>
-                          <th>SKS</th>
-                        </tr>
-                        </tfoot>
-                      </table>
-                    
-                  </div>
                   <!-- /.tab-pane -->
                 </div>
                 <!-- /.tab-content -->
@@ -159,10 +93,7 @@
       
 
       
-      <div class="box-footer">
-          <a href="{{ route('approveJadwal') }}"><button type="submit" class="btn btn-success">Approve jadwal</button></a>
-          <a href="{{ route('disapproveJadwal') }}"><button type="submit" class="btn btn-danger">Tolak jadwal</button></a>
-      </div>
+      
       
     </section>
     
@@ -218,8 +149,8 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('dist/js/demo.js')}}"></script>
 <!-- DataTables -->
-<script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+<script src="{{asset('../../bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 <script>
     $(function () {
       $('#tabel_semester_1').DataTable()

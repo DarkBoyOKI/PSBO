@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', function () {return view('templates/login');});
+Route::get('/', function () {return view('/templates/login');});
 Route::get('/home', function () {
     if(!Auth::user())
-        return redirect('templates/login');
+        return redirect('login');
     $user=Auth::user();
     if($user->role!='mahasiswa')
         return redirect('jadwalMHS');
@@ -32,6 +32,7 @@ Route::get('/register', function () {
     return view('templates/register');
 });
 
+
 Route::get('/matkul', function () {
     return view('templates/matkul');
 });
@@ -39,7 +40,7 @@ Route::get('/matkul', function () {
 
 Route::get('/buatJadwal', function () {
     if(!Auth::user())
-        return redirect('templates/login');
+        return redirect('login');
     $user=Auth::user();
     if($user->role!='mahasiswa')
         return redirect('/home');
@@ -48,7 +49,7 @@ Route::get('/buatJadwal', function () {
 
 Route::get('/buatMatkul', function () {
     if(!Auth::user())
-        return redirect('templates/login');
+        return redirect('login');
     $user=Auth::user();
     if($user->role!='dosen')
         return redirect('/home');
@@ -57,7 +58,7 @@ Route::get('/buatMatkul', function () {
 
 Route::get('/jadwalMHS', function () {
     if(!Auth::user())
-        return redirect('templates/login');
+        return redirect('login');
     $user=Auth::user();
     if($user->role!='dosen')
         return redirect('home');
@@ -66,7 +67,7 @@ Route::get('/jadwalMHS', function () {
 
 Route::get('/jadwalMHS/{id_mhs}', function ($id_mhs) {
     if(!Auth::user())
-        return redirect('templates/login');
+        return redirect('login');
     $user=Auth::user();
     if($user->role!='dosen')
         return redirect('home');
@@ -76,25 +77,8 @@ Route::get('/jadwalMHS/{id_mhs}', function ($id_mhs) {
 Route::post('/buatMatkul', 'MatkulController@buatMatkul')->name('buatMatkul');
 
 
-Route::post('/approveJadwal', 'ApproveController@approveJadwal')->name('approveJadwal');
-Route::get('/approveJadwal/{id_mhs}', function () {
-    if(!Auth::user())
-        return redirect('templates/login');
-    $user=Auth::user();
-    if($user->role!='dosen')
-        return redirect('home');
-    return view('templates/jadwalMHSdetail',compact('id_mhs'));
-});
-
-Route::post('/disapproveJadwal', 'ApproveController@disapproveJadwal')->name('disapproveJadwal');
-Route::get('/disapproveJadwal/{id_mhs}', function () {
-    if(!Auth::user())
-        return redirect('templates/login');
-    $user=Auth::user();
-    if($user->role!='dosen')
-        return redirect('home');
-    return view('templates/jadwalMHSdetail',compact('id_mhs'));
-});
+Route::post('/approveJadwal/{id}', 'ApproveController@approveJadwal')->name('approveJadwal');
+Route::post('/disapproveJadwal/{id}', 'ApproveController@disapproveJadwal')->name('disapproveJadwal');
 
 
 Auth::routes();

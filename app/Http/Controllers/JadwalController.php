@@ -12,20 +12,24 @@ class JadwalController extends Controller
     //
     public function buatJadwal($id_matkul,$semester){
         $matkul = Matkul::where('id','=', $id_matkul)->first();
-        //if(Jadwal::where([['id_mhs','=',Auth::user()->id],['id_matkul','=',$id_matkul],['semester','=',Auth::user()->semester]]))
-        //    return back()->with('danger', 'Mata kuliah telah diambil!');
+        if(Jadwal::where([['id_mhs','=',Auth::user()->id],
+        ['id_matkul','=',$id_matkul],
+        ['semester','=',Auth::user()->semester]])->first()!=null)
+            return back()->with('danger', 'Mata kuliah telah diambil!');
         Jadwal::create([
             'id_mhs' => Auth::user()->id,
             'id_matkul' => $id_matkul,
             'semester' => $semester,
             'sks' => $matkul->sks,
         ]);
+        Auth::user()->update(['approve'=>0]);
         return back()->with('success', 'Mata kuliah telah ditambahkan');
     }
     //
     public function hapusJadwal($id_jadwal){
         $jadwal = Jadwal::where('id','=', $id_jadwal)->first();
         $jadwal->delete();
+        Auth::user()->update(['approve'=>0]);
         return back()->with('success', 'Mata kuliah telah dihapus');
     }
 }

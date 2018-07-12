@@ -57,9 +57,7 @@
         <div class="col-xs-12">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                  <li class="active"><a href="#semester_1" data-toggle="tab">Semester 1</a></li>
-                  <li><a href="#semester_2" data-toggle="tab">Semester 2</a></li>
-                  <li><a href="#semester_3" data-toggle="tab">Semester 3</a></li>
+                  <li class="active"><a href="#semester_1" data-toggle="tab">Susunan Jadwal Sekarang</a></li>
                   <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
                 </ul>
                 <div class="tab-content">
@@ -103,66 +101,6 @@
                         </table>
                   </div>
                   <!-- /.tab-pane -->
-                  <div class="tab-pane" id="semester_2">
-                      <table id="tabel_semester_2" class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th>Nomor</th>
-                            <th>Kode Mata Kuliah</th>
-                            <th>Nama Mata Kuliah</th>
-                            <th>SKS</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                          </tr>
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                          <th>Nomor</th>
-                          <th>Kode Mata Kuliah</th>
-                          <th>Nama Mata Kuliah</th>
-                          <th>SKS</th>
-                        </tr>
-                        </tfoot>
-                      </table>
-                   
-                  </div>
-                  <!-- /.tab-pane -->
-                  <div class="tab-pane" id="semester_3">
-                      <table id="tabel_semester_3" class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th>Nomor</th>
-                            <th>Kode Mata Kuliah</th>
-                            <th>Nama Mata Kuliah</th>
-                            <th>SKS</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                          </tr>
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                          <th>Nomor</th>
-                          <th>Kode Mata Kuliah</th>
-                          <th>Nama Mata Kuliah</th>
-                          <th>SKS</th>
-                        </tr>
-                        </tfoot>
-                      </table>
-                    
-                  </div>
-                  <!-- /.tab-pane -->
                 </div>
                 <!-- /.tab-content -->
               </div>
@@ -188,12 +126,13 @@
       <section class="content">
           <div class="row">
             <div class="col-xs-12">
-                <div class="box">
-                    <div class="box-header">
-                      <h3 class="box-title">Data Table With Full Features</h3>
-                    </div>
+              <div class="nav-tabs-custom">
+                  <ul class="nav nav-tabs">
+                    <li class="active"><a href="#semester_1" data-toggle="tab">Mata Kuliah yang Dapat Diambil</a></li>
+                    <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+                  </ul>
+                  <div class="tab-content">
                     <!-- /.box-header -->
-                    <div class="box-body">
                       <table id="example1" class="table table-bordered table-striped">
                       <thead>
                         <tr>
